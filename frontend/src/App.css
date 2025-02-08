@@ -1,0 +1,256 @@
+/* App.css */
+:root {
+  /* Light Theme Colors */
+  --background-light: #f7f7f7;
+  --text-light: #333;
+  --section-bg-light: #ffffff;
+  --button-bg-light: #007bff;
+  --button-hover-light: #0056b3;
+  --input-bg-light: #fafafa;
+  --list-item-bg-light: #f1f1f1;
+  
+  /* Dark Theme Colors */
+  --background-dark: #2c2c2c;
+  --text-dark: #f7f7f7;
+  --section-bg-dark: #3c3c3c;
+  --button-bg-dark: #007bff;
+  --button-hover-dark: #0056b3;
+  --input-bg-dark: #3f3f3f;
+  --list-item-bg-dark: #444;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Theme */
+.App.light {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+.App.light section {
+  background-color: var(--section-bg-light);
+}
+
+.App.light button {
+  background-color: var(--button-bg-light);
+  color: white;
+}
+
+.App.light button:hover {
+  background-color: var(--button-hover-light);
+}
+
+.App.light input {
+  background-color: var(--input-bg-light);
+}
+
+.App.light li {
+  background-color: var(--list-item-bg-light);
+}
+
+/* Dark Theme */
+.App.dark {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+.App.dark section {
+  background-color: var(--section-bg-dark);
+}
+
+.App.dark button {
+  background-color: var(--button-bg-dark);
+  color: white;
+}
+
+.App.dark button:hover {
+  background-color: var(--button-hover-dark);
+}
+
+.App.dark input {
+  background-color: var(--input-bg-dark);
+  color: white;
+}
+
+.App.dark li {
+  background-color: var(--list-item-bg-dark);
+}
+
+/* Styling for the theme toggle button */
+.theme-toggle {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+section {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+label {
+  width: 100px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: whitesmoke;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Adding multiple transition properties */
+}
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Adds a shadow when hovered */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+strong {
+  color: #007bff;
+}
+
+/* Styling for the 'Add Custom Field' and 'Remove Custom Field' buttons */
+.custom-field-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.custom-field-buttons button {
+  padding: 10px 18px;
+  background-color: #28a745;  /* Green color for Add button */
+  color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-right: 10px;
+}
+
+.custom-field-buttons button:hover {
+  background-color: #218838; /* Darker green for hover */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Adds a shadow when hovered */
+}
+
+.custom-field-buttons button.remove {
+  background-color: #dc3545;  /* Red color for Remove button */
+}
+
+.custom-field-buttons button.remove:hover {
+  background-color: #c82333; /* Darker red for hover */
+}
+
+/* Flex container for the buttons */
+.button-container {
+  display: flex;
+  justify-content: flex-start; /* Aligns buttons to the left */
+  gap: 10px;  /* Adds space between the buttons */
+  margin-top: 10px;
+}
+
+.button-container button {
+  padding: 10px 18px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Add Custom Field Button */
+.button-container button.add {
+  background-color: #28a745;  /* Green color */
+  color: whitesmoke;
+}
+
+.button-container button.add:hover {
+  background-color: #218838;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Search Logs Button */
+.button-container button.search {
+  background-color: #007bff;  /* Blue color */
+  color: whitesmoke;
+}
+
+.button-container button.search:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+button.remove {
+  background-color: #dc3545;  /* Red color for Remove button */
+}
+
+button.remove:hover {
+  background-color: #c82333; /* Darker red for hover */
+}
+
+.horizontal-rule{
+  border-top: 0.2px #333; 
+  
+}
