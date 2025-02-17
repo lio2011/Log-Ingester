@@ -11,7 +11,10 @@ from datetime import datetime, timezone, timedelta
 from elasticsearch import Elasticsearch
 import logging
 import os
+from config import settings
+from dotenv import load_dotenv
 # models.Base.metadata.create_all(bind=engine)
+load_dotenv()
 
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
@@ -20,15 +23,16 @@ ELASTICSEARCH_HOST = os.getenv("ELASTICSEARCH_HOST", "http://elasticsearch:9200"
 client = Elasticsearch([ELASTICSEARCH_HOST])
 
 # client = Elasticsearch([{'host': 'localhost', 'port': 9200,'scheme' : 'http'}])
+API_KEY = os.getenv("API_KEY")
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4000"],  # Allow your frontend origin
+    allow_origins=["http://localhost:4000"], # To allow my frontend origin
     allow_credentials=True,
-    allow_methods=["GET"],  # Allow all methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["GET"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
@@ -56,7 +60,7 @@ async def store_log(log: schemas.Log):
         log_dict = {key: value for key, value in new_log.__dict__.items() if key != '_sa_instance_state'}
         # if not log_dict.get("extra_fields"):
         log_dict.pop("extra_fields", None)
-        response = client.index(index="logs", document=log_dict, headers={"Authorization": "ApiKey bjJwQlA1UUJCbkdpMTg3VVFrOTk6aF85RG1EUDRSY0tNWE5wak9tVm9KQQ=="} )
+        response = client.index(index="logs", document=log_dict, headers={"Authorization": f"ApiKey {API_KEY}"} )
         return {"message": "Log stored successfully", "log": new_log}
     except Exception as e:
         logger.error(f"Failed to store log: {str(e)}")
@@ -72,6 +76,7 @@ async def store_log(log: schemas.Log):
 @app.get("/logs")
 async def get_logs(size: int = 10):
     try:
+        print(API_KEY)
         res = client.search(
             index="logs",
             body={
@@ -87,7 +92,7 @@ async def get_logs(size: int = 10):
                     }
                 ]
             },
-            headers={"Authorization": "ApiKey bjJwQlA1UUJCbkdpMTg3VVFrOTk6aF85RG1EUDRSY0tNWE5wak9tVm9KQQ=="}
+            headers={"Authorization": f"ApiKey {API_KEY}"}
         )
         return {"Count": res['hits']['total']['value'] ,"Response": res['hits']['hits']}
     except Exception as e:
@@ -149,7 +154,7 @@ async def search_logs(request: Request,message: str=None, size: int = 10, trace_
                 "size": size,
                 "sort": [{"timestamp": {"order": "desc"}}]
             },
-            headers={"Authorization": "ApiKey bjJwQlA1UUJCbkdpMTg3VVFrOTk6aF85RG1EUDRSY0tNWE5wak9tVm9KQQ=="}
+            headers={"Authorization": f"ApiKey {API_KEY}"}
         )
         # print(query)
         return {"Total hits": res.get("hits", {}).get("total", {}).get("value",0),
