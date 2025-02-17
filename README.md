@@ -59,6 +59,8 @@ The architecture is containerized using Docker and orchestrated with Docker Comp
 
 4. Use the logs_generator.py file to generate and send logs to fastapi db which can be ingested by the fastapi instance. You can also create your own script or make your project send logs on ```port 3000```.
 
+5. API documentation can be visited at `http://localhost:3000/docs`
+
 ## Backend
 
 The backend is built with FastAPI and consists of the following key files:
