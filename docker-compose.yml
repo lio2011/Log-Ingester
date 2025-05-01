@@ -68,7 +68,7 @@ services:
 
   app1:
     build:
-      context: ../backend/app
+      context: ./backend/app
       dockerfile: Dockerfile
     container_name: app1
     environment:
@@ -80,7 +80,7 @@ services:
 
   app2:
     build:
-      context: ../backend/app
+      context: ./backend/app
       dockerfile: Dockerfile
     container_name: app2
     environment:
@@ -92,7 +92,7 @@ services:
 
   app3:
     build:
-      context: ../backend/app
+      context: ./backend/app
       dockerfile: Dockerfile
     container_name: app3
     environment:
@@ -118,7 +118,7 @@ services:
 
   frontend:
     build:
-      context: ../frontend
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
     ports:
